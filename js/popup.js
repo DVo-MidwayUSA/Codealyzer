@@ -1,12 +1,5 @@
 (function () {
-
     'use strict'
-
-    var el = document.querySelector('#test');
-
-    var currentRating = 0;
-
-    var maxRating = 5;
 
     var getParameterByName = function (name, url) {
         if (!url) url = window.location.href;
@@ -16,15 +9,43 @@
         if (!results) return null;
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
+    };
 
-    var callback = function (rating) { 
-        console.log(rating); 
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            var currTab = tabs[0];
-            console.log(getParameterByName('path', currTab.url));
+    var getPath = function (submission) {
+        return new Promise(function (resolve, reject) {
+            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+                var currTab = tabs[0];
+                var path = getParameterByName('path', currTab.url);
+                if (!path) {
+                    reject();
+                }
+
+                submission.path = path;
+                resolve(submission);
+            });
         });
     };
 
-    var myRating = rating(el, currentRating, maxRating, callback);
+    var getUser = function (submission) {
+        return new Promise(function (resolve, reject) {
+            chrome.identity.getProfileUserInfo(function (userInfo) {
+                submission.user = userInfo.email;
+                resolve(submission);
+            });
+        });
+    };
+
+    var callback = function (rating) {
+        var submission = {};
+        submission.rating = rating;
+
+        getPath(submission);
+        getUser(submission);
+        console.log(submission);
+    };
+
+    var el = document.querySelector('#rating');
+    var currentRating = 0;
+    var maxRating = 5;
+    rating(el, currentRating, maxRating, callback);
 }())

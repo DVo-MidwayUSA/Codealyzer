@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/rating.min.css" />
     <style>
         body {
-            margin: 0;
+            margin: 0 10px;
             padding: 0;
         }
 
@@ -24,6 +24,15 @@
             width: 24px;
         }
 
+        span {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 10px;
+            text-align: center;
+            width: 120px;
+            display: block;
+            height: 15px;
+        }
+
         .credits {
             display: none;
         }
@@ -31,10 +40,12 @@
 </head>
 
 <body>
-    <ul id="test"></ul>
+    <ul id="rating"></ul>
+    <span>How <strong>clean</strong> is this code?</span>
     <div class="credits">Icons made by <a href="https://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="https://www.flaticon.com/"
             title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
             target="_blank">CC 3.0 BY</a></div>
+
     <script src="/js/rating.min.js"></script>
     <script src="/js/popup.js"></script>
 
