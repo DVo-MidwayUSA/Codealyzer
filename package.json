@@ -1,0 +1,19 @@
+{
+  "name": "codealyzer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielvoweb/Codealyzer.git"
+  },
+  "author": "dan@daniel-vo.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danielvoweb/Codealyzer/issues"
+  },
+  "homepage": "https://github.com/danielvoweb/Codealyzer#readme"
+}
